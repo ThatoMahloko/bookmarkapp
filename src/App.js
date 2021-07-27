@@ -1,17 +1,17 @@
 import React, { Fragment, useState } from 'react';
 import './App.css';
 import { BsMusicNoteBeamed } from "react-icons/bs";
-const App = () => {
+import LinkCard from './components/LinkCard';
+const App = (props) => {
   // hooks start
-  const [cardData, setCardData] = useState([{ linkName: 'my link', linkHref: 'https://github.com' }])
-  const [newCard, setNewCard] = useState({ linkName: '', linkHref: '' })
-
+  const [cardData, setCardData] = useState([{ linkName: 'my link', linkHref: 'https://github.com' }]);
+  const [newCard, setNewCard] = useState({ linkName: '', linkHref: '' });
   // hooks end
 
   // dispatchCardSet
   const dispatchCardSet = (payload) => {
     let oldArray = cardData;
-    let newArray = { ...oldArray, payload }
+    let newArray = { ...oldArray, payload };
     setCardData(newArray);
     setNewCard({ linkHref: '', linkName: '' });
   }
@@ -63,12 +63,7 @@ const App = () => {
           </form>
         </div>
 
-        <div className="rightContent">
-          <div className="linkCard">
-            <BsMusicNoteBeamed className="linkCardImage" />
-            <div className="linkCardLink"><h2><a href={newCard.linkHref}>{newCard.linkName}</a></h2></div>
-          </div>
-        </div>
+     <LinkCard cards={cardData}/>
       </main>
     </Fragment>
   );
