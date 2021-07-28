@@ -1,9 +1,9 @@
 import React from 'react'
 import SongList from './components/SongList'
-
+import './App.css'
 function App() {
   return (
-    <div>
+    <div className="container">
       <SongList />
     </div>
   )

@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
-import uuid from 'uuid/v1'
+import {v1 as uuid} from 'uuid'
 import NewSongFom from './NewSongFom';
 
 const SongList = () => {
     const [song, setSong] = useState([
         { title: '', artist: '', album: '', releaseYear: '', id: 1 }
     ]);
-    const addSong = (title) => {
-        setSong([...song, { title, id: uuid() }])
+    const addSong = (title,artist, album, releaseYear) => {
+        setSong([...song, { title, artist,album,releaseYear, id: uuid() }])
     }
     return (
         <div>
-            <ul>
+            <ul className="list-group">
                 {song.map(song => {
-                    return (<li key={song.id}>{song.title} {song.artist} {song.album} {song.releaseYear}</li>)
+                    return (<li className="list-group-item bg-info" key={song.id}>Song Title: {song.title} ArtistName:{song.artist} Album Title:{song.album} Release Year:{song.releaseYear}</li>)
                 })}
             </ul>
-            <button onClick={addSong}>Add a song</button>
-            <NewSongFom addSong={add}/>
+            <NewSongFom addSong={addSong}/><hr/>
         </div>
     );
 }
